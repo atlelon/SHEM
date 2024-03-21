@@ -54,7 +54,7 @@ function [u, FLAG,RELRES,ITER,RESVEC,eigest]=SHEM(s)
 
     end  
     tic
-    fprintf('Generating the coefficient rho:  ' )
+    fprintf('\nGenerating the coefficient rho:  ' )
     s.checkDist();
     s.rho = rho(s);
     toc
@@ -68,12 +68,12 @@ function [u, FLAG,RELRES,ITER,RESVEC,eigest]=SHEM(s)
     s.rhs=rhsi(s.MESH.fine.p,s.MESH.fine.t,ff);
     toc
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    disp('Constructing MS coarse basis functions')
+    fprintf('Constructing MS coarse basis functions: ')
     tic 
     R_MS = createMSCoarseSpace(s,s.A);
     toc
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    disp(['Constructing the ' s.CSType ' coarse basis functions'])
+    fprintf(['Constructing the ' s.CSType ' coarse basis functions: '])
     tic
     R_Enr = coarseEnrichment(s,s.A);
     toc
@@ -85,14 +85,12 @@ function [u, FLAG,RELRES,ITER,RESVEC,eigest]=SHEM(s)
     % Merge MS and enrichment basis functions to one coarse space operator.
     R_SHEM = [R_MS;R_Enr];
     
-    fprintf('Dimension of the Coarse Space: %d \n', size(R_SHEM,1));
-    
-
-
+    fprintf('Dimension of the coarse space: %d \n', size(R_SHEM,1));
+    fprintf('Dimension of the largest sumdomain: %d', size(s.DDPart.ovASInd,2));
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     np = size(s.MESH.fine.p,2);
     u  = zeros(np,1); 
-    fprintf('Solving the linear system: ');
+    fprintf('\nSolving the linear system: ');
     warning('off','MATLAB:eigs:IgnoredOptionIssym');
     tic
     [u(s.MESH.fine.internal), FLAG,RELRES,ITER,RESVEC,eigest] = pcgeig(...

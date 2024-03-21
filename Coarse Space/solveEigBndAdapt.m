@@ -47,10 +47,16 @@ function [u]=solveEigBndAdapt(coord, h,bl,nodes,s)
         
     end
 
+    % Trick for extrating the mass matrix from the global stiffness matrix.
+    % Seems to give better adaptive performance.
+    M(1:nb+1:end) = diag(s.A(nodes,nodes));
+    freeNodes          = 2:nb-1;
+
     % Not the most optimal way for doing this, but it's reasonable fast so
     % not the first place to start optimizing.
     [V,D]=eig(full(A(freeNodes,freeNodes)),M(freeNodes,freeNodes));
-    sumeig=diag(D)*H^2/h^2; %*H^2;
+    % sumeig=diag(D)*H^2/h^2; %*H^2;
+    sumeig=diag(D); %*H^2;
     foundEig=sumeig(sumeig < s.threshold);
     numLevels=size(foundEig,1);
     

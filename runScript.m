@@ -5,16 +5,26 @@
 %
 % Copyright 2013-2024 Martin J. Gander, Atle Loneland, Talal Rahman.
 %% Start SHEM
+ % Need to be in SHEM folder for this to work.
+start_SHEM();
 
+%List of properties to set for SHEM.
+properties SHEMSettings
 
-
-start_SHEM(); % Need to be in SHEM folder for this to work.
 %% Some pre-settings;
 
-metisFolder = 'C:\Users\lonel\Documents\MATLAB\metis-5.0.2\';
-loadFromFile = 'D8numRefine5'; % Precalculated mesh and partition. Choose 
-                               % Between 'D8numRefine3','D8numRefine4' or
-                               % 'D8numRefine5' 
+% If METIS is not on path you can specify the location of the METIS folder
+% and it should work. Note that this does not use MEX, but call METIS 
+% directly via System - command and then read/writes the graph partitioning
+% using .txt files.
+metisFolder = '';
+
+% Precalculated mesh and partition. Choose between 'D8numRefine3',
+% 'D8numRefine4' or 'D8numRefine5'. If PDE toolbox and METIS is installed
+% you don't need to worry about this unless you want to make sure to use
+% the exact same mesh and subdomain decomposition.
+
+loadFromFile = 'D8numRefine5'; 
 plotDist      = false;
 plotEnr       = false;
 plotMS        = false;
@@ -33,7 +43,7 @@ s.rhVal    = 1e6;
 
 % Specify coarse space to use: 'MS', 'sine', 'alternating','SHEM' and 
 % 'adaptive'.
-s.CSType   = 'hierarchical';
+s.CSType    = 'hierarchical';
                              
 % Type of meshing.
 s.meshType = 'regular';   
@@ -61,9 +71,9 @@ s.rhofile  = 'example1';
 % The jump value. Range: [1 - \infty) (~1e6).
 s.rhVal    = 1e6;             
 
-% Specify coarse space to use: 'MS', 'sine', 'alternating','SHEM' and 
-% 'adaptive'.
-s.CSType   = 'SHEM';
+% Specify coarse space to use: 'MS', 'sine', 'alternating','SHEM' 
+% or'adaptive'. 
+s.CSType    = 'SHEM';
                              
 % Type of meshing.
 s.meshType = 'regular';   
@@ -73,9 +83,9 @@ s.levels   = 4;
 
 % See the pre-settings section
 s.plotDist      = plotDist; 
-s.plotEnr       = false;
-s.plotMS        = false;
-s.plotSol       = false;
+s.plotEnr       = plotEnr;
+s.plotMS        = plotEnr;
+s.plotSol       = plotEnr;
 s.plotPartUnity = plotPartUnity;
 
 % Solve the problem
@@ -91,9 +101,9 @@ s.rhofile  = 'example1';
 % The jump value. Range: [1 - \infty) (~1e6).
 s.rhVal    = 1e6;             
 
-% Specify coarse space to use: 'MS', 'sine', 'alternating','SHEM' and 
+% Specify coarse space to use: 'MS', 'sine', 'alternating','SHEM' or 
 % 'adaptive'.
-s.CSType   = 'SHEM';
+s.CSType    = 'SHEM';
                              
 % Type of meshing.
 s.meshType = 'regular';   
@@ -103,14 +113,14 @@ s.levels   = 3;
 
 % See the pre-settings section
 s.plotDist      = plotDist; 
-s.plotEnr       = false;
-s.plotMS        = false;
-s.plotSol       = false;
+s.plotEnr       = plotEnr;
+s.plotMS        = plotEnr;
+s.plotSol       = plotEnr;
 s.plotPartUnity = plotPartUnity;
 
 % Solve the problem
 SHEM(s);
-%% Setup Example 3 - Distribution given in Figure 1 and results in Table 5
+%% Setup Example 4 - Distribution given in Figure 1 and results in Table 5
 
 s   = SHEMSettings; 
 
@@ -120,9 +130,9 @@ s.rhofile  = 'example1';
 % The jump value. Range: [1 - \infty) (~1e6).
 s.rhVal    = 1e6;             
 
-% Specify coarse space to use: 'MS', 'sine', 'alternating','SHEM' and 
+% Specify coarse space to use: 'MS', 'sine', 'alternating','SHEM' or 
 % 'adaptive'.
-s.CSType   = 'adaptive';
+s.CSType    = 'adaptive';
                              
 % Type of meshing.
 s.meshType = 'regular';   
@@ -132,23 +142,115 @@ s.levels   = 3;
 
 % See the pre-settings section
 s.plotDist      = plotDist; 
-s.plotEnr       = false;
-s.plotMS        = false;
-s.plotSol       = false;
-s.plotPartUnity = plotPartUnity;
+s.plotEnr       = plotEnr;
+s.plotMS        = plotEnr;
+s.plotSol       = plotEnr;
+s.plotPartUnity = true;
 
 % Solve the problem
 SHEM(s);
-%% Example 3
+%% Setup Example 4 - Distribution given in Figure 1 and results in Table 5
+
+s   = SHEMSettings; 
+
+% Specify coarse space to use: 'MS', 'sine', 'alternating','SHEM' and 
+% 'adaptive'.
+s.CSType   = 'adaptive'
+
+% Choose distribution file.
+s.rhofile  = 'compEx';     
+
+% The jump value. Range: [1 - \infty) (~1e6).
+s.rhVal    = 1e6;             
+
+% Specify coarse space to use: 'MS', 'sine', 'alternating','SHEM' or  
+% 'adaptive'.
+s.CSType  = 'adaptive'; 
+                             
+% Type of meshing.
+s.meshType = 'regular';   
+
+% Number of basis functions to add on each  interface.
+s.threshold = 1/32;           
+
+% See the pre-settings section
+s.plotDist      = true; 
+s.plotEnr       = plotEnr;
+s.plotMS        = plotEnr;
+s.plotSol       = plotEnr;
+s.plotPartUnity = true;
+
+% Solve the problem
+SHEM(s);
 %% Example 4
-%% Example 5
+%% Example 5 Distribution given in Figure 1 and results in Table 5
+% Load precomputed mesh and partition
 s = SHEMSettings; 
-s.metisFolder = 'C:\Users\lonel\Documents\MATLAB\metis-5.0.2\';
 s.rhVal = 1e4; 
-s.CSType = 'adaptive'; 
+
+% Specify coarse space to use: 'MS', 'sine', 'alternating','SHEM' 
+% or 'adaptive'. 
+s.CSType  = 'adaptive'; 
 s.rhofile = 'compEx'; 
 s.meshType = 'irregular'; 
-% s.loadFromFile = 'D8numRefine5';
-s.numRefine = 5;
+s.loadFromFile = 'D8numRefine5';
+% s.numRefine = 5;
 
-[u, FLAG,RELRES,ITER,RESVEC,eigest]=SHEM(s);
+% See the pre-settings section
+s.plotDist      = true; 
+s.plotEnr       = plotEnr;
+s.plotMS        = plotEnr;
+s.plotSol       = plotEnr;
+s.plotPartUnity = true;
+
+% Solve the problem
+SHEM(s);
+%% Example 5 Complicated Example with irregular mesh
+% Load precomputed mesh and partition
+s = SHEMSettings; 
+s.rhVal = 1e4; 
+
+% Specify coarse space to use: 'MS', 'sine', 'alternating','SHEM' or  
+% 'adaptive'. 
+s.CSType        = 'MS'; 
+s.rhofile      = 'compEx'; 
+s.meshType     = 'irregular'; 
+s.loadFromFile = 'D8numRefine5';
+s.threshold    = 1/32;
+
+% See the pre-settings section
+s.plotDist      = true; 
+s.plotEnr       = plotEnr;
+s.plotMS        = plotEnr;
+s.plotSol       = plotEnr;
+s.plotPartUnity = true;
+
+% Solve the problem
+SHEM(s);
+
+%% Example 6 SPE10
+% Load precomputed mesh and partition
+s = SHEMSettings; 
+
+%  Specify coarse space to use: 'MS', 'sine', 'alternating','SHEM' or  
+% 'adaptive'. 
+s.CSType        = 'adaptive'; 
+
+% Choose distribution file.
+s.rhofile  = 'SPE10';     
+
+% The jump value. Range: [1 - \infty) (~1e6).
+s.rhVal    = 1e6;      
+s.meshType     = 'irregular'; 
+s.loadFromFile = 'D8numRefine5';
+s.threshold    = 1/32;
+
+% See the pre-settings section
+s.plotDist      = true; 
+s.plotEnr       = plotEnr;
+s.plotMS        = plotEnr;
+s.plotSol       = plotEnr;
+s.plotPartUnity = true;
+
+% Solve the problem
+SHEM(s);
