@@ -38,12 +38,17 @@ metisFolder = '';
 % 'D8numRefine4' or 'D8numRefine5'. If PDE toolbox and METIS is installed
 % you don't need to worry about this unless you want to make sure to use
 % the exact same mesh and subdomain decomposition.
+loadFromFile = 'D8numRefine5';
 
-loadFromFile = 'D8numRefine5'; 
+% TRUE/FALSE for plotting the underlying distribution of the coefficients.
 plotDist      = false;
+% TRUE/FALSE for plotting the coarse enrichment basis functions.
 plotEnr       = false;
+% TRUE/FALSE for plotting the coarse multiscale basis functions.
 plotMS        = false;
+% TRUE/FALSE for plotting the solution.
 plotSol       = false;
+% TRUE/FALSE for plotting the partition of unity of the multiscale basis functions.
 plotPartUnity = false;
 
 %% Example 6 SPE10
