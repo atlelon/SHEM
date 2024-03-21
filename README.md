@@ -8,7 +8,7 @@ Clone or download this repo and run start_SHEM().
 git clone https://github.com/atlelon/SHEM.git
 cd SHEM
 ```
-
+In MATLAB:
 ```matlab
 start_SHEM()
 ```
