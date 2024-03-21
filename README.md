@@ -8,9 +8,9 @@ Clone or download this repo and run start_SHEM().
 git clone https://github.com/atlelon/SHEM.git
 cd SHEM
 
-'''matlab
+```matlab
 start_SHEM()
-'''
+```
 ## Run
 To run the code and reproduce the numerical results given in the paper. Follow the instructions of each section in the runScript folder. You only need base MATLAB to run the examples, but for trying other irregular meshes and METIS subdomain decomposition you need MATLAB's PDE toolbox and METIS installed.
 
