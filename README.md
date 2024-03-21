@@ -15,7 +15,7 @@ In MATLAB:
 start_SHEM()
 ```
 ## Run
-To run the code and reproduce the numerical results given in the paper. Follow the instructions of each section in the runScript folder. You only need base MATLAB to run the examples, but for trying other irregular meshes and METIS subdomain decomposition you need MATLAB's PDE toolbox and METIS installed.
+To run the code and reproduce the numerical results given in the paper. Follow the instructions of each section in the runScript file. You only need base MATLAB to run the examples, but for trying other irregular meshes and METIS subdomain decomposition you need MATLAB's PDE toolbox and METIS installed.
 
 ## Example 
 ```matlab
