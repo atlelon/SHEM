@@ -4,9 +4,10 @@ This is a repo for our paper **Analysis of a New Harmonically Enriched Multiscal
 
 ## Installation
 Clone or download this repo and run start_SHEM().
-
+```
 git clone https://github.com/atlelon/SHEM.git
 cd SHEM
+```
 
 ```matlab
 start_SHEM()
