@@ -36,6 +36,7 @@ plotEnr       = false;
 plotMS        = false;
 plotSol       = false;
 plotPartUnity = false;
+
 %% Example 6 SPE10
 % Load precomputed mesh and partition
 s = SHEMSettings; 
