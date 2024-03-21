@@ -1,6 +1,6 @@
 # SHEM
 
-This is a repo with MATLAB code that reproduces the numerical results for our paper **Analysis of a New Harmonically Enriched Multiscale Coarse Space for Domain Decomposition Methods**  [Arxiv] (https://arxiv.org/abs/1512.05285) that will soon be published. 
+This is a repo with MATLAB code that reproduces the numerical results in our paper **Analysis of a New Harmonically Enriched Multiscale Coarse Space for Domain Decomposition Methods**  [Arxiv] (https://arxiv.org/abs/1512.05285) that will soon be published. 
 
 Note that the examples using irregular mesh and METIS does not reproduce exactly in MATLAB 2023a with Windows 11 due to MATLAB's initmesh not giving the same triangulation as in older versions of MATLAB with Ubuntu. 
 
