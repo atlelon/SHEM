@@ -243,7 +243,7 @@ s.CSType        = 'adaptive';
 s.rhofile  = 'compEx';     
 
 % The jump value. Range: [1 - \infty) (~1e6).
-s.rhVal    = 1e0;      
+s.rhVal    = 1e6;      
 s.meshType     = 'irregular'; 
 s.loadFromFile = 'D8numRefine5';
 s.threshold    = 1/32;
