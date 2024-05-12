@@ -1,5 +1,5 @@
 function a = assemai( p, t, rho )
-% ASSEMAI Assembles stiffness a. The routine is called in tset().
+% ASSEMAI Assembles stiffness a. 
 %
 %         a = assemai( p, t, rho ) assembles the stiffness matrix a.
 %
@@ -16,7 +16,7 @@ it3=t(3,:);
 % Coefficient rho for the triangles.
 itrho = rho;
 % Triangle geometries:
-[ar,g1x,g1y,g2x,g2y,g3x,g3y] = pdetrg( p, t );
+[ar,g1x,g1y,g2x,g2y,g3x,g3y] = trgInfo( p, t );
 
 % Stiffness matrix.
 c3 = ((g1x.*g2x+g1y.*g2y).*ar.*itrho);

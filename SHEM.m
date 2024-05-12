@@ -54,7 +54,7 @@ function [u, FLAG,RELRES,ITER,RESVEC,eigest]=SHEM(s)
 
     end  
     tic
-    fprintf('\nGenerating the coefficient rho:  ' )
+    fprintf('Generating the coefficient rho:  ' )
     s.checkDist();
     s.rho = rho(s);
     toc

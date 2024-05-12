@@ -1,8 +1,8 @@
-function [area,g1x,g1y,g2x,g2y,g3x,g3y]=gradAr(p,t)
+function [area,g1x,g1y,g2x,g2y,g3x,g3y]=trgInfo(p,t)
 %PDETRG Triangle geometry data.
 %
-%       [AR,G1X,G1Y,G2X,G2Y,G3X,G3Y]=gradAr(P,T) returns the area and the
-%       compoents of the gradient of the triangle P1 - shape functions.
+% [AR,G1X,G1Y,G2X,G2Y,G3X,G3Y]=gradAr(P,T) returns the area and the
+% compoents of the gradient of the triangle P1 - shape functions.
 %
 
 % Indices of the corner point

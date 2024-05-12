@@ -110,10 +110,10 @@ switch s.meshType
                 end
                 elem=sum(t==vertex(1),1)==1;
                 [node, I]=intersect(dummy,t(:,elem));
-                nynode=setdiff(node,vertex(1));
+                newNode=setdiff(node,vertex(1));
                 edge(end+1) = vertex(1);
                 dummy=setdiff(dummy,edge);
-                vertex=nynode;
+                vertex=newNode;
             end
             bndInd{k}=edge;
         %         size(kant,2)

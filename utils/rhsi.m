@@ -4,7 +4,7 @@ function [fm] = rhsi ( p, t, f )
 np = size(p,2); % No. of points.
 
 % Triangle geometries : area and the corner point indices.
-[ar] = pdetrg(p,t);
+[ar] = trgInfo(p,t);
 it1  = t(1,:);
 it2  = t(2,:);
 it3  = t(3,:);
