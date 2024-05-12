@@ -20,7 +20,7 @@ To run the code and reproduce the numerical results given in the paper. Follow t
 ## Example 
 ```matlab
 %% Start SHEM
- % Need to be in SHEM folder for this to work.
+% Need to be in SHEM folder for this to work.
 start_SHEM();
 
 %List of properties to set for SHEM.

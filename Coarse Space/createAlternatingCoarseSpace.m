@@ -1,13 +1,13 @@
-function R_Sine = createAlternatingCoarseSpace(s,A)
+function R_Alt = createAlternatingCoarseSpace(s,A)
 np  = size(s.MESH.fine.p,2);
 bnd = s.DDPart.nonOvbndInd;
 ind = s.DDPart.nonOvASInd;
 d   = s.d;
 p   = s.MESH.fine.p;
 h   = 1/(s.d*2^s.numRefine);
-ii=1;
 
-R_Sine=spalloc(2*d*(d-1)*s.levels,np,8*np);
+R_Alt=spalloc(2*d*(d-1)*s.levels,np,8*np);
+ii=1;
 % for kk=1:levels;
 for k=1:d-1
     for j=1:d-1
@@ -30,7 +30,7 @@ for k=1:d-1
             frNodes=ind(i+1,:);
             b2=b2-A*r2;
             r1(frNodes)=A(frNodes,frNodes)\b2(frNodes);
-            R_Sine(ii,:)=r1;
+            R_Alt(ii,:)=r1;
             %             trisurf(t', p(1,:), p(2,:), r1','facecolor','interp');
             %             pause()
             ii=ii+1;
@@ -52,7 +52,7 @@ for k=1:d-1
             r1(frNodes)=A(frNodes,frNodes)\b2(frNodes);
             %             trisurf(t', p(1,:), p(2,:), r1','facecolor','interp');
             %             pause()
-            R_Sine(ii,:)=r1;
+            R_Alt(ii,:)=r1;
             ii=ii+1;
         end
     end
@@ -77,7 +77,7 @@ for i=d:d:(d)^2-d
         frNodes=ind(i+d,:);
         b2=b2-A*r2;
         r1(frNodes)=A(frNodes,frNodes)\b2(frNodes);
-        R_Sine(ii,:)=r1;
+        R_Alt(ii,:)=r1;
         %             trisurf(t', p(1,:), p(2,:), r1','facecolor','interp');
         %             pause()
         ii=ii+1;
@@ -102,7 +102,7 @@ for i=d^2-d+1:d^2-1
         frNodes=ind(i+1,:);
         b2=b2-A*r2;
         r1(frNodes)=A(frNodes,frNodes)\b2(frNodes);
-        R_Sine(ii,:)=r1;
+        R_Alt(ii,:)=r1;
         %             trisurf(t', p(1,:), p(2,:), r1','facecolor','interp');
         %             pause()
         ii=ii+1;

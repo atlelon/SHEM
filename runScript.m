@@ -23,12 +23,17 @@ metisFolder = '';
 % 'D8numRefine4' or 'D8numRefine5'. If PDE toolbox and METIS is installed
 % you don't need to worry about this unless you want to make sure to use
 % the exact same mesh and subdomain decomposition.
+loadFromFile = 'D8numRefine5';
 
-loadFromFile = 'D8numRefine5'; 
+% TRUE/FALSE for plotting the underlying distribution of the coefficients.
 plotDist      = false;
+% TRUE/FALSE for plotting the coarse enrichment basis functions.
 plotEnr       = false;
+% TRUE/FALSE for plotting the coarse multiscale basis functions.
 plotMS        = false;
-plotSol       = false;
+% TRUE/FALSE for plotting the solution.
+plotSol       = true;
+% TRUE/FALSE for plotting the partition of unity of the multiscale basis functions.
 plotPartUnity = false;
 
 %% Setup Example 1 - Distribution given in Figure 5 and results in Table 2
@@ -84,8 +89,8 @@ s.levels   = 4;
 % See the pre-settings section
 s.plotDist      = plotDist; 
 s.plotEnr       = plotEnr;
-s.plotMS        = plotEnr;
-s.plotSol       = plotEnr;
+s.plotMS        = plotMS;
+s.plotSol       = plotSol;
 s.plotPartUnity = plotPartUnity;
 
 % Solve the problem
@@ -114,8 +119,8 @@ s.levels   = 3;
 % See the pre-settings section
 s.plotDist      = plotDist; 
 s.plotEnr       = plotEnr;
-s.plotMS        = plotEnr;
-s.plotSol       = plotEnr;
+s.plotMS        = plotMS;
+s.plotSol       = plotSol;
 s.plotPartUnity = plotPartUnity;
 
 % Solve the problem
@@ -128,11 +133,11 @@ s   = SHEMSettings;
 s.rhofile  = 'example1';     
 
 % The jump value. Range: [1 - \infty) (~1e6).
-s.rhVal    = 1e6;             
+s.rhVal    = 1e4;             
 
 % Specify coarse space to use: 'MS', 'sine', 'alternating','SHEM' or 
 % 'adaptive'.
-s.CSType    = 'adaptive';
+s.CSType    = 'alternating';
                              
 % Type of meshing.
 s.meshType = 'regular';   
@@ -143,8 +148,8 @@ s.levels   = 3;
 % See the pre-settings section
 s.plotDist      = plotDist; 
 s.plotEnr       = plotEnr;
-s.plotMS        = plotEnr;
-s.plotSol       = plotEnr;
+s.plotMS        = plotMS;
+s.plotSol       = plotSol;
 s.plotPartUnity = true;
 
 % Solve the problem
@@ -162,22 +167,19 @@ s.rhofile  = 'compEx';
 
 % The jump value. Range: [1 - \infty) (~1e6).
 s.rhVal    = 1e6;             
-
-% Specify coarse space to use: 'MS', 'sine', 'alternating','SHEM' or  
-% 'adaptive'.
-s.CSType  = 'adaptive'; 
-                             
+                         
 % Type of meshing.
 s.meshType = 'regular';   
 
-% Number of basis functions to add on each  interface.
+% Threshold for when to include spectral coarse basis functions into the 
+% coarse space.
 s.threshold = 1/32;           
 
 % See the pre-settings section
 s.plotDist      = true; 
 s.plotEnr       = plotEnr;
-s.plotMS        = plotEnr;
-s.plotSol       = plotEnr;
+s.plotMS        = plotMS;
+s.plotSol       = plotSol;
 s.plotPartUnity = true;
 
 % Solve the problem
@@ -199,8 +201,8 @@ s.loadFromFile = 'D8numRefine5';
 % See the pre-settings section
 s.plotDist      = true; 
 s.plotEnr       = plotEnr;
-s.plotMS        = plotEnr;
-s.plotSol       = plotEnr;
+s.plotMS        = plotMS;
+s.plotSol       = plotSol;
 s.plotPartUnity = true;
 
 % Solve the problem
@@ -216,13 +218,14 @@ s.CSType        = 'MS';
 s.rhofile      = 'compEx'; 
 s.meshType     = 'irregular'; 
 s.loadFromFile = 'D8numRefine5';
+
 s.threshold    = 1/32;
 
 % See the pre-settings section
 s.plotDist      = true; 
 s.plotEnr       = plotEnr;
-s.plotMS        = plotEnr;
-s.plotSol       = plotEnr;
+s.plotMS        = plotMS;
+s.plotSol       = plotSol;
 s.plotPartUnity = true;
 
 % Solve the problem
@@ -237,10 +240,10 @@ s = SHEMSettings;
 s.CSType        = 'adaptive'; 
 
 % Choose distribution file.
-s.rhofile  = 'SPE10';     
+s.rhofile  = 'compEx';     
 
 % The jump value. Range: [1 - \infty) (~1e6).
-s.rhVal    = 1e6;      
+s.rhVal    = 1e0;      
 s.meshType     = 'irregular'; 
 s.loadFromFile = 'D8numRefine5';
 s.threshold    = 1/32;
@@ -248,8 +251,8 @@ s.threshold    = 1/32;
 % See the pre-settings section
 s.plotDist      = true; 
 s.plotEnr       = plotEnr;
-s.plotMS        = plotEnr;
-s.plotSol       = plotEnr;
+s.plotMS        = plotMS;
+s.plotSol       = plotSol;
 s.plotPartUnity = true;
 
 % Solve the problem
