@@ -1,11 +1,11 @@
 function [u, FLAG,RELRES,ITER,RESVEC,eigest]=SHEM(s)
-    % An implementation of SHEM corresponding to our paper 
-    % "Analysis of a New Harmonically Enriched Multiscale Coarse Space for
-    % Domain Decomposition Methods" by Martin J. Gander, Atle Loneland,
-    % Talal Rahman. Link: https://arxiv.org/abs/1512.05285
-    %
-    % Copyright 2013-2024 Martin J. Gander, Atle Loneland, Talal Rahman.
-    %
+% An implementation of SHEM corresponding to our paper 
+% "Analysis of a New Harmonically Enriched Multiscale Coarse Space for
+% Domain Decomposition Methods" by Martin J. Gander, Atle Loneland,
+% Talal Rahman. Link: https://arxiv.org/abs/1512.05285
+%
+% Copyright 2013-2024 Martin J. Gander, Atle Loneland, Talal Rahman.
+%
     switch s.loadFromFile
 
         case 'D8numRefine5'
@@ -73,11 +73,14 @@ function [u, FLAG,RELRES,ITER,RESVEC,eigest]=SHEM(s)
     R_MS = createMSCoarseSpace(s,s.A);
     toc
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    fprintf(['Constructing the ' s.CSType ' coarse basis functions: '])
-    tic
-    R_Enr = coarseEnrichment(s,s.A);
-    toc
-    
+    if ~strcmp(s.CSType,'MS')
+        fprintf(['Constructing the ' s.CSType ' coarse basis functions: '])
+        tic
+        R_Enr = coarseEnrichment(s,s.A);
+        toc
+    else 
+        R_Enr = [];
+    end
     % Store the coarse space components in s.
     s.coarseSpace.R_MS   = R_MS;
     s.coarseSpace.R_SHEM = R_Enr;

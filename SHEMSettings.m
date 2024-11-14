@@ -10,7 +10,12 @@ classdef SHEMSettings < handle
         % Number of times the initial coarse triangulation is gonna be 
         % refined.
         numRefine = 4;
-        
+
+        % The size of the overlap as a positive whole number, i.e., number 
+        % of layers the subdomains are extended. delta = 1 corresponds to 
+        % the small overlap case 2h.
+        delta = 1;
+
         % Vector storing the coeffcients for each triangel.
         rho       = [];
 
@@ -64,17 +69,19 @@ classdef SHEMSettings < handle
         % boundary. Will be ignored if adaptive is set to true.
         levels    = 0;
 
-        % If adaptive coarse spectral enrichment should be used.
+        % If adaptive coarse spectral enrichment should be used. NB! Only 
+        % for CSType = 'SHEM'.
         adaptive  = false;
 
         % Type of Domain decomposition solver. 'AS' or 'RAS'
         % NB! Note that RAS is currently not implemented yet.
         DDSolver  = 'AS';
 
-        % Type of Coarse Space used. Either 'MS','SHEM','alternating', 
-        % 'sine' or 'hierarchical'. If no enrichment is specified the coarse space
-        %  will be the standard Multiscale Coarse space ('MS').
-        CSType    = 'SHEM';
+        % Type of Coarse Space used. Either 'MS','SHEM', 'adaptive', 
+        % 'alternating', 'sine' or 'hierarchical'. If no enrichment is 
+        % specified the coarse space will be the standard Multiscale Coarse
+        % space ('MS'). Note 'adaptive' is the adaptive variant of SHEM.
+        CSType    = 'MS';
 
         % Treshhold for including spectral functions in the coarse space.
         % Only used for the adaptive variant.
@@ -129,6 +136,81 @@ classdef SHEMSettings < handle
             otherwise
                 obj.rhofile = value;
         end
+    end
+
+    function set.d(obj,value)
+        validateattributes(value,{'double'},{'positive','integer'})
+        obj.d = value;
+    end
+
+    function set.numRefine(obj,value)
+        validateattributes(value,{'double'},{'positive','integer'})
+        obj.numRefine = value;
+    end
+
+    function set.delta(obj,value)
+        validateattributes(value,{'double'},{'positive','integer'})
+        obj.delta = value;
+    end
+
+    function set.maxIt(obj,value)
+        validateattributes(value,{'double'},{'positive','integer'})
+        obj.maxIt = value;
+    end
+
+    function set.levels(obj,value)
+        validateattributes(value,{'double'},{'nonnegative','integer'})
+        obj.levels = value;
+    end
+
+    function set.threshold(obj,value)
+        validateattributes(value,{'double'},{'positive','scalar'})
+        obj.threshold = value;
+    end
+
+    function set.PCGTol(obj,value)
+        validateattributes(value,{'double'},{'positive','scalar'})
+        obj.PCGTol = value;
+    end
+
+    function set.alpha(obj,value)
+        validateattributes(value,{'double'},{'positive','scalar'})
+        obj.alpha = value;
+    end
+
+    function set.rhVal(obj,value)
+        validateattributes(value,{'double'},{'positive','scalar'})
+        obj.rhVal = value;
+    end
+
+    function set.plotDist(obj,value)
+        validateattributes(value,{'logical'},{})
+        obj.plotDist = value;
+    end
+
+    function set.plotMS(obj,value)
+        validateattributes(value,{'logical'},{})
+        obj.plotMS = value;
+    end
+
+    function set.plotEnr(obj,value)
+        validateattributes(value,{'logical'},{})
+        obj.plotEnr = value;
+    end
+
+    function set.plotSol(obj,value)
+        validateattributes(value,{'logical'},{})
+        obj.plotSol = value;
+    end
+
+    function set.plotPartUnity(obj,value)
+        validateattributes(value,{'logical'},{})
+        obj.plotPartUnity = value;
+    end
+
+    function set.adaptive(obj,value)
+        validateattributes(value,{'logical'},{})
+        obj.adaptive = value;
     end
 
     function checkDist(obj)

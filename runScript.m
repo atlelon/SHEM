@@ -26,7 +26,7 @@ metisFolder = '';
 loadFromFile = 'D8numRefine5';
 
 % TRUE/FALSE for plotting the underlying distribution of the coefficients.
-plotDist      = false;
+plotDist      = true;
 % TRUE/FALSE for plotting the coarse enrichment basis functions.
 plotEnr       = false;
 % TRUE/FALSE for plotting the coarse multiscale basis functions.
@@ -44,7 +44,7 @@ s   = SHEMSettings;
 s.rhofile  = 'example2';     
 
 % The jump value. Range: [1 - \infty) (~1e6).
-s.rhVal    = 1e6;             
+s.rhVal    = 1e4;             
 
 % Specify coarse space to use: 'MS', 'sine', 'alternating','SHEM' and 
 % 'adaptive'.
