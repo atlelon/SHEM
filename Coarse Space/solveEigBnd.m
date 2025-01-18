@@ -11,7 +11,7 @@ function [V]=solveEigBnd(coord, h,bl,nodes,s)
         elements(i,1) = I(i);
         elements(i,2) = I(i+1);
         elnum         = node2element(s.MESH.tri,nodes(elements(i,:)))';
-        val(i)        = sum(s.rho(elnum)); % Can use max and sum here.
+        val(i)        = max(s.rho(elnum)); % Can use max and sum here.
         elnum2        = node2elementAll(s.MESH.tri,nodes(elements(i,2)))';
         valb          = sum(s.rho(elnum2));    
     

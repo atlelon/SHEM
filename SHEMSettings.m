@@ -12,8 +12,8 @@ classdef SHEMSettings < handle
         numRefine = 4;
 
         % The size of the overlap as a positive whole number, i.e., number 
-        % of layers the subdomains are extended. delta = 1 corresponds to 
-        % the small overlap case 2h.
+        % of layers the subdomains are extended in each direction.
+        % delta = 1 corresponds to the small overlap case 2h.
         delta = 1;
 
         % Vector storing the coeffcients for each triangel.

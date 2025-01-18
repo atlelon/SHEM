@@ -44,7 +44,7 @@ s   = SHEMSettings;
 s.rhofile  = 'example2';     
 
 % The jump value. Range: [1 - \infty) (~1e6).
-s.rhVal    = 1e4;             
+s.rhVal    = 1e6;             
 
 % Specify coarse space to use: 'MS', 'sine', 'alternating','SHEM' and 
 % 'adaptive'.
@@ -54,7 +54,7 @@ s.CSType    = 'hierarchical';
 s.meshType = 'regular';   
 
 % Number of basis functions to add on each  interface.
-s.levels   = 3;           
+s.levels   = 15;           
 
 % See the pre-settings section
 s.plotDist      = plotDist; 
@@ -64,8 +64,8 @@ s.plotSol       = plotSol;
 s.plotPartUnity = plotPartUnity;
 
 % Solve the problem
-SHEM(s);
-
+[u, FLAG,RELRES,ITER,RESVEC,eigest] = SHEM(s);
+FLAG
 %% Setup Example 2 - Distribution given in Figure 1 and results in Table 3
 
 s   = SHEMSettings; 
@@ -155,7 +155,7 @@ s.plotPartUnity = true;
 % Solve the problem
 SHEM(s);
 %% Setup Example 4 - Distribution given in Figure 1 and results in Table 5
-
+% Adaptive
 s   = SHEMSettings; 
 
 % Specify coarse space to use: 'MS', 'sine', 'alternating','SHEM' and 
@@ -184,6 +184,36 @@ s.plotPartUnity = true;
 
 % Solve the problem
 SHEM(s);
+%% Setup Example 4 - Distribution given in Figure 1 and results in Table 5
+
+s   = SHEMSettings; 
+
+% Specify coarse space to use: 'MS', 'sine', 'alternating','SHEM' and 
+% 'adaptive'.
+s.CSType   = 'hierarchical';
+
+% Choose distribution file.
+s.rhofile  = 'compEx';     
+
+% The jump value. Range: [1 - \infty) (~1e6).
+s.rhVal    = 1e5;             
+                         
+% Type of meshing.
+s.meshType = 'regular';  
+
+% Number of basis functions to add on each  interface.
+s.levels   = 3; 
+
+% See the pre-settings section
+s.plotDist      = true; 
+s.plotEnr       = plotEnr;
+s.plotMS        = plotMS;
+s.plotSol       = plotSol;
+s.plotPartUnity = true;
+
+% Solve the problem
+[u, FLAG,RELRES,ITER,RESVEC,eigest] = SHEM(s);
+FLAG
 %% Example 4
 %% Example 5 Distribution given in Figure 1 and results in Table 5
 % Load precomputed mesh and partition
